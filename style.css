@@ -58,12 +58,8 @@ h1 {
 }
 
 .box {
-  height: 80px;
-}
-
-#footer {
-  margin: 40px 0;
-  text-align: center;
+  height: 360px;
+  width: 340px;
 }
 
 #upload {

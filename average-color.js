@@ -7,11 +7,6 @@ function addImage(file) {
     '</div>' +
     '<div class="cell color">' +
     '  <div class="box"></div>' +
-    '  <ul>' +
-    '    <li class="rgb"></li>' +
-    '    <li class="hex"></li>' +
-    '    <li class="hsl"></li>' +
-    '  </ul>' +
     '</div>';
 
   var img = element.querySelector('img');
