@@ -1,6 +1,6 @@
-function addImage1(file) {
+function addImage(file) {
   var element = document.createElement('div');
-  element.className = 'row';
+  element.className = 'h1';
   element.innerHTML =
     '<div class="cell image">' +
     '  <img />' +
@@ -9,27 +9,12 @@ function addImage1(file) {
   var img = element.querySelector('img');
   img.src = URL.createObjectURL(file);
 
-  document.getElementById('images').appendChild(element);
-}
-
-function addImage2(file) {
-  var element = document.createElement('div');
-  element.className = 'row';
-  element.innerHTML =
-    '<div class="cell image">' +
-    '  <img />' +
-    '</div>';
-
-  var img = element.querySelector('img');
-  img.src = URL.createObjectURL(file);
   document.getElementById('images').appendChild(element);
 }
 
 function handleImages(files) {
   document.getElementById('images').innerHTML = '';
-     addImage1(files[0]);
-     addImage2(files[0]);
-  
+     addImage(files[0]);  
 }
 
 document.ondragover = function(event) {
