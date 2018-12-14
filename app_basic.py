@@ -1,4 +1,3 @@
-from test import *
 import os
 from flask import Flask, render_template, request
 
@@ -22,13 +21,12 @@ def upload():
 
     for file in request.files.getlist("file"):
         print(file)
-        filename = file.filename
-        destination = "/".join([target, filename])
+        destination = "/".join([target, '01.png'])
         print(destination)
         file.save(destination)
 
     return render_template("upload.html")
-fun()
+
 
 if __name__ == "__main__":
     app.run(port=4555, debug=True)
