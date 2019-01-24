@@ -12,7 +12,7 @@
     <h1>Pnumonia Detection</h1>
     <div id="target">
     <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
-        <input id="file-picker" type="file" name="file" accept="image/*" multiple>
+        <input id="file-picker" type="file" accept="image/*" name="file" capture="camera">
         <input type="submit" value="Upload!">
     </form>
     </div>    
