@@ -35,9 +35,8 @@ def upload():
         destination = "/".join([target, 'X_ray.png'])
         
         upload.save(destination)
-    # return send_from_directory("images", filename, as_attachment=True)
-
-    #return render_template("complete.html", image_name=filename,prob=100*p[0][0])
+    
+    
 
     return render_template("upload.html")
 
@@ -46,4 +45,4 @@ def send_image(filename):
     return send_from_directory("images", filename)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port=5006)
+    app.run(port=5006)
