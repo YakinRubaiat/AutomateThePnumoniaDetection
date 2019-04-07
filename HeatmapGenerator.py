@@ -1,3 +1,5 @@
+##Heatmap file
+
 import os
 import numpy as np
 import time
@@ -78,7 +80,27 @@ class HeatmapG():
         self.model.cuda()
         output = self.model(input.cuda())
         
-        return output
+        #---- Generate heatmap
+        heatmap = None
+        for i in range (0, len(self.weights)):
+            map = output[0,i,:,:]
+            if i == 0: heatmap = self.weights[i] * map
+            else: heatmap += self.weights[i] * map
+        
+        #---- Blend original and heatmap 
+        npHeatmap = heatmap.cpu().data.numpy()
+
+        imgOriginal = cv2.imread(pathImageFile, 1)
+        imgOriginal = cv2.resize(imgOriginal, (transCrop, transCrop))
+        
+        cam = npHeatmap / np.max(npHeatmap)
+        cam = cv2.resize(cam, (transCrop, transCrop))
+        heatmap = cv2.applyColorMap(np.uint8(255*cam), cv2.COLORMAP_JET)
+              
+        img = heatmap * 0.5 + imgOriginal
+            
+        cv2.imwrite(pathOutputFile, img)
+        
 #-------------------------------------------------------------------------------- 
 
 #pathInputImage = 'test/00009285_000.png'

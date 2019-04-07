@@ -36,8 +36,6 @@ def upload():
         
         upload.save(destination)
     
-    
-
     return render_template("upload.html")
 
 @app.route('/upload/<filename>')
