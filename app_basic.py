@@ -1,11 +1,10 @@
 import os
 from uuid import uuid4
 from flask import Flask, render_template, request,send_from_directory
-import cv2
-import numpy as np
+from test import Prediction
 
-def ClsImg(filename):
-    pass
+
+model = Prediction()
      
 app = Flask(__name__)
 
@@ -22,11 +21,9 @@ def upload():
     # target = os.path.join(APP_ROOT, 'static/')
 
     print(target)
-
+    
     if not os.path.isdir(target):
             os.mkdir(target)
-    else:
-        print("Couldn't create upload directory: {}".format(target))
 
     print(request.files.getlist("file"))
 
@@ -35,12 +32,12 @@ def upload():
         destination = "/".join([target, 'X_ray.png'])
         
         upload.save(destination)
-    
-    return render_template("upload.html")
+        print(model.predict())
+    return render_template("complete.html")
 
-@app.route('/upload/<filename>')
-def send_image(filename):
-    return send_from_directory("images", filename)
+@app.route("/upload")
+def send_image():
+    return send_from_directory("images", "heatmap.png")
 
 if __name__ == "__main__":
     app.run(port=5006)
