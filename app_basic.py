@@ -32,12 +32,14 @@ def upload():
         destination = "/".join([target, 'X_ray.png'])
         
         upload.save(destination)
-        print(model.predict())
-    return render_template("complete.html")
+    
+    result = model.predict()
+
+    return render_template("complete.html",result=result)
 
 @app.route("/upload")
 def send_image():
     return send_from_directory("images", "heatmap.png")
 
 if __name__ == "__main__":
-    app.run(port=5006)
+    app.run(port=80)

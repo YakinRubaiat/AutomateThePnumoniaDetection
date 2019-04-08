@@ -35,4 +35,18 @@ class Prediction():
 
         rpred = predTensor.cpu().data.numpy()[0]
 
-        return ['%.3f' % (elem*100) for elem in list(rpred)]
+        predlist = ['%.3f' % (elem*100) for elem in list(rpred)]
+
+        CLASS_NAMES = [ 'Atelectasis', 'Cardiomegaly', 'Effusion', 'Infiltration', 'Mass', 'Nodule', 'Pneumonia',
+                'Pneumothorax', 'Consolidation', 'Edema', 'Emphysema', 'Fibrosis', 'Pleural_Thickening', 'Hernia']
+        
+        # Prediction dictionary
+        result = {}
+
+        for i in range(14):
+            result[CLASS_NAMES[i]] = predlist[i]
+        
+        return result
+
+
+

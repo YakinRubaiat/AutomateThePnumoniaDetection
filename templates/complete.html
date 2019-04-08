@@ -14,6 +14,15 @@
 <body>
 <img src=" {{url_for('send_image')}}" style="width:420px;height:420px;">
 <p></p>
-<center><font size="6">You have {{ prob }} percent probability to becoming pneumonia.</font></center>
+
+<table align="center">
+{% for key, value in result.items() %}
+    <tr>
+        <th> {{ key }} </th>
+        <td> {{ value }} </td>
+    </tr>
+{% endfor %}
+</table>
+
 </body>
 </html>
